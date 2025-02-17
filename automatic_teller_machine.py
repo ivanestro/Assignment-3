@@ -2,7 +2,7 @@ import random
 import os
 import time
 
-#Variables for the menu options.
+#Variables for the menu options we will be using.
 menu_options = {'D': 'Deposit', 'W': 'Withdraw', 'Q': 'Quit'}
 
 #Initial Balance Starting for Customer
@@ -24,34 +24,34 @@ def atm_display(format_balance): #defining a function to display all the prompt 
     print("Quit: Q".center(width))#Text centered above withdraw
     print(border)#print boarder
 
-#Input 
+#Defining atm_simulator 
 def atm_simulator():
     global balance  # without global this will be an error to the code. its to modify $$$
-    user_input = ''
+    user_input = '1000'#This ensures user input 
     
     #While user input does not equal to Q. 
     while user_input != 'Q':
         format_balance = f"${balance:,.2f}"  # Reformat balance to show as currency
         
         atm_display(format_balance)  # Display the ATM menu and balance
-        response = 'Enter Your Selection: [D: Deposit, W: Withdraw, Q: Quit] '#The user UI.
+        response = 'Enter Your Selection: [D: Deposit, W: Withdraw, Q: Quit] '#The user User Interface for the program that tells the user "Enter Deposit, Withdraw and Quit".
         user_input = input(response).upper()  # To ensure user input is case-insensitive
         
-        #Validate menu selection
+        #Validate menu selection this ensures that the user is inputting the right Keywords examples D,W,Q. 
         if user_input not in menu_options:
-            print(border)
-            print("INVALID SELECTION".center(width))
-            print(border)
+            print(border)#This will print the border of * which prints 40 times 
+            print("INVALID SELECTION".center(width))#If the user is inputting different letters it will print out Invalid Selection and Center the word along the width.
+            print(border)#This will print the border of * and prints 40 times. 
             time.sleep(2)  # Wait for 2 seconds before continuing
             os.system('cls' if os.name == 'nt' else 'clear')  # Clear the screen
             continue  # Skip the rest of the loop and ask for input again
 
         #Deposit Option if user input equals to D then input transaction
         if user_input == 'D':
-            deposit_input = input("Enter the transaction amount: $ ")
+            deposit_input = input("Enter the transaction amount: $ ")#This ensures the user to input things on command prompt
             #Replace removes first decimal point from input, is digit only consists digit and input.count only one decimal point in original input.
             if deposit_input.replace('.', '', 1).isdigit() and deposit_input.count('.') <= 1:
-                deposit_amount = float(deposit_input)
+                deposit_amount = float(deposit_input) 
                 if deposit_amount > 0:
                     balance += deposit_amount  # Update the balance
                     print(f"You Deposited ${deposit_amount:,.2f}")
