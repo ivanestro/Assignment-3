@@ -14,9 +14,9 @@ border = '*' * width
 
 #ATM Display Function
 def atm_display(format_balance): #defining a function to display all the prompt of an ATM Display.
-    print("")  # Blank line at the top
-    print(border)
-    print("PIXELL RIVER Financial".center(width))
+    print("")  #Blank line at the top
+    print(border)#This will print * 40 times 
+    print("PIXELL RIVER Financial".center(width))#Making sure to center PIXEL River by the border's width.
     print("ATM Simulator".center(width))  # Text centered below PIXELL RIVER FINANCIAL
     print(f"Your current balance is: {format_balance}".center(width))  # Formatted balance
     print("Deposit: D".center(width)) #Text centered above Your Current Balance Is:
@@ -29,6 +29,7 @@ def atm_simulator():
     global balance  # without global this will be an error to the code. its to modify $$$
     user_input = ''
     
+    #While user input does not equal to Q. 
     while user_input != 'Q':
         format_balance = f"${balance:,.2f}"  # Reformat balance to show as currency
         
@@ -45,7 +46,7 @@ def atm_simulator():
             os.system('cls' if os.name == 'nt' else 'clear')  # Clear the screen
             continue  # Skip the rest of the loop and ask for input again
 
-        #Deposit Option
+        #Deposit Option if user input equals to D then input transaction
         if user_input == 'D':
             deposit_input = input("Enter the transaction amount: $ ")
             #Replace removes first decimal point from input, is digit only consists digit and input.count only one decimal point in original input.
@@ -61,7 +62,7 @@ def atm_simulator():
                 print("INVALID SELECTION".center(width))
                 print(border)
 
-        #Withdraw Option
+        #Withdraw Option else if user_input equals to W then enter transaction
         elif user_input == 'W':
             withdraw_input = input("Enter the transaction amount: $ ")
             #Replace removes first decimal point from input, is digit only consists digit and input.count only one decimal point in original input.
@@ -70,7 +71,7 @@ def atm_simulator():
                 if withdraw_amount > 0 and withdraw_amount <= balance:#To Ensure users to not withdraw more than what is in the screen.
                     balance -= withdraw_amount  #Update the balance and modify it.
                     print(f"You Withdrew ${withdraw_amount:,.2f}.")
-                elif withdraw_amount > balance:
+                elif withdraw_amount > balance: 
                     print(border)
                     print("INSUFFICIENT FUNDS".center(width))
                     print(border)
@@ -81,7 +82,7 @@ def atm_simulator():
                 print("INVALID SELECTION".center(width))
                 print(border)
 
-        #Quit Option
+        #Quit Option elseif user_input equals Q then print (ATM Shutting Down), wait for prompt and clear the screen.
         elif user_input == 'Q':
             print("ATM Shutting Down")
 
